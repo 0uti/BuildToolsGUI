@@ -4,7 +4,8 @@ using System.Runtime.InteropServices;
 
 namespace BuildTools {
 
-    public class Job : IDisposable {
+    public class Job : IDisposable
+    {
         [DllImport("kernel32.dll", CharSet = CharSet.Unicode)]
         static extern IntPtr CreateJobObject(IntPtr a, string lpName);
 
@@ -17,7 +18,8 @@ namespace BuildTools {
         private IntPtr handle;
         private bool disposed;
 
-        public Job() {
+        public Job()
+        {
             handle = CreateJobObject(IntPtr.Zero, null);
 
             var info = new JOBOBJECT_BASIC_LIMIT_INFORMATION {
@@ -36,12 +38,14 @@ namespace BuildTools {
                 throw new Exception(string.Format("Unable to set information.  Error: {0}", Marshal.GetLastWin32Error()));
         }
 
-        public void Dispose() {
+        public void Dispose()
+        {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
-        private void Dispose(bool disposing) {
+        private void Dispose(bool disposing)
+        {
             if (disposed)
                 return;
 
@@ -54,16 +58,19 @@ namespace BuildTools {
         [DllImport("kernel32.dll", SetLastError = true)]
         static extern bool CloseHandle(IntPtr hObject);
 
-        public void Close() {
+        public void Close()
+        {
             CloseHandle(handle);
             handle = IntPtr.Zero;
         }
 
-        public bool AddProcess(IntPtr processHandle) {
+        public bool AddProcess(IntPtr processHandle)
+        {
             return AssignProcessToJobObject(handle, processHandle);
         }
 
-        public bool AddProcess(int processId) {
+        public bool AddProcess(int processId)
+        {
             return AddProcess(Process.GetProcessById(processId).Handle);
         }
 
@@ -73,7 +80,8 @@ namespace BuildTools {
     // ReSharper disable InconsistentNaming
 
     [StructLayout(LayoutKind.Sequential)]
-    struct IO_COUNTERS {
+    struct IO_COUNTERS
+    {
         public ulong ReadOperationCount;
         public ulong WriteOperationCount;
         public ulong OtherOperationCount;
@@ -84,7 +92,8 @@ namespace BuildTools {
 
 
     [StructLayout(LayoutKind.Sequential)]
-    struct JOBOBJECT_BASIC_LIMIT_INFORMATION {
+    struct JOBOBJECT_BASIC_LIMIT_INFORMATION
+    {
         public long PerProcessUserTimeLimit;
         public long PerJobUserTimeLimit;
         public uint LimitFlags;
@@ -97,14 +106,16 @@ namespace BuildTools {
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    public struct SECURITY_ATTRIBUTES {
+    public struct SECURITY_ATTRIBUTES
+    {
         public uint nLength;
         public IntPtr lpSecurityDescriptor;
         public int bInheritHandle;
     }
 
     [StructLayout(LayoutKind.Sequential)]
-    struct JOBOBJECT_EXTENDED_LIMIT_INFORMATION {
+    struct JOBOBJECT_EXTENDED_LIMIT_INFORMATION
+    {
         public JOBOBJECT_BASIC_LIMIT_INFORMATION BasicLimitInformation;
         public IO_COUNTERS IoInfo;
         public UIntPtr ProcessMemoryLimit;
@@ -113,7 +124,8 @@ namespace BuildTools {
         public UIntPtr PeakJobMemoryUsed;
     }
 
-    public enum JobObjectInfoType {
+    public enum JobObjectInfoType
+    {
         AssociateCompletionPortInformation = 7,
         BasicLimitInformation = 2,
         BasicUIRestrictions = 4,

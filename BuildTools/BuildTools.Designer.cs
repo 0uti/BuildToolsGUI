@@ -74,7 +74,7 @@
             this.autoUpdateCB.TabIndex = 2;
             this.autoUpdateCB.Text = "Automatically check for updates";
             this.autoUpdateCB.UseVisualStyleBackColor = true;
-            this.autoUpdateCB.Click += new System.EventHandler(this.autoUpdateCB_Click);
+            this.autoUpdateCB.Click += new System.EventHandler(this.AutoUpdateCB_Click);
             // 
             // outputTB
             // 

@@ -35,7 +35,7 @@ namespace BuildTools {
         private readonly Runner _runner;
         private string _lastLog = "";
         private volatile List<string> _versions = new List<string>();
-        private Job _job;
+        private readonly Job _job;
 
         [DllImport("user32.dll", SetLastError = true)]
         public static extern uint GetWindowThreadProcessId(IntPtr hWnd, out uint lpdwProcessId);
@@ -308,7 +308,7 @@ namespace BuildTools {
             }
         }
 
-        private void autoUpdateCB_Click(object sender, EventArgs e) {
+        private void AutoUpdateCB_Click(object sender, EventArgs e) {
             if (autoUpdateCB.Checked) {
                 File.WriteAllText(Program.CheckUpdate, "true");
             } else {
