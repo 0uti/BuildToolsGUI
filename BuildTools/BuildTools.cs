@@ -34,7 +34,7 @@ namespace BuildTools {
         // Stuff
         private readonly Runner _runner;
         private string _lastLog = "";
-        private volatile List<string> _versions = new List<string>();
+        private readonly List<string> _versions = new List<string>();
         private readonly Job _job;
 
         [DllImport("user32.dll", SetLastError = true)]
@@ -238,8 +238,10 @@ namespace BuildTools {
         private void GetVersions() {
             new Thread(delegate () {
                 string versionsHtml = GetHtml("https://hub.spigotmc.org/versions/");
-                if (versionsHtml == "")
+                if (string.IsNullOrEmpty(versionsHtml))
+                {
                     return;
+                }
 
                 // Convert the HTML to XHTML to use an XML parser
                 HtmlAgilityPack.HtmlDocument doc = new HtmlAgilityPack.HtmlDocument();

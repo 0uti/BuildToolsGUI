@@ -133,7 +133,7 @@
             this.linkLabel.AutoSize = true;
             this.linkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.HoverUnderline;
             this.linkLabel.LinkColor = System.Drawing.Color.Blue;
-            this.linkLabel.Location = new System.Drawing.Point(375, 16);
+            this.linkLabel.Location = new System.Drawing.Point(351, 16);
             this.linkLabel.Name = "linkLabel";
             this.linkLabel.Size = new System.Drawing.Size(67, 13);
             this.linkLabel.TabIndex = 7;
@@ -150,9 +150,9 @@
             this.versionBox.FormattingEnabled = true;
             this.versionBox.Items.AddRange(new object[] {
             "Latest"});
-            this.versionBox.Location = new System.Drawing.Point(448, 13);
+            this.versionBox.Location = new System.Drawing.Point(424, 13);
             this.versionBox.Name = "versionBox";
-            this.versionBox.Size = new System.Drawing.Size(56, 21);
+            this.versionBox.Size = new System.Drawing.Size(80, 21);
             this.versionBox.TabIndex = 8;
             // 
             // BuildTools
@@ -170,7 +170,7 @@
             this.Controls.Add(this.updateBT);
             this.Controls.Add(this.runBT);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MinimumSize = new System.Drawing.Size(650, 85);
+            this.MinimumSize = new System.Drawing.Size(648, 79);
             this.Name = "BuildTools";
             this.Text = "BuildTools";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.BuildTools_FormClosed);
