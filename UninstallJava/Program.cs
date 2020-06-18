@@ -6,7 +6,7 @@ namespace UninstallJava
     /// <summary>
     /// Runner class for uninstalling Java.
     /// </summary>
-    public class Program
+    public static class Program
     {
         /// <summary>
         /// Takes no arguments, when this program is run it will search for Java installed on the machine and
@@ -14,7 +14,7 @@ namespace UninstallJava
         /// if the uninstallation was unsuccessful or it did not find Java to uninstall.
         /// </summary>
         /// <param name="args"></param>
-        public static void Main(string[] args)
+        public static void Main()
         {
             try
             {

@@ -265,6 +265,7 @@ namespace BuildTools {
         private static string GetHtml(string url) {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
             try {
+                request.UserAgent = "BuildToolsGui";
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             
                 if (response.StatusCode == HttpStatusCode.OK) {

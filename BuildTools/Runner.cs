@@ -137,7 +137,8 @@ namespace BuildTools
         {
             try
             {
-                WebRequest request = WebRequest.Create(url);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                request.UserAgent = "BuildToolsGui";
                 using (Stream stream = request.GetResponse().GetResponseStream())
                 {
                     try
@@ -540,8 +541,6 @@ namespace BuildTools
 
             using (Process process = new Process())
             {
-
-
                 _disposables.Add(process);
                 try
                 {
@@ -771,7 +770,6 @@ namespace BuildTools
                     process.StartInfo.RedirectStandardOutput = true;
                     process.StartInfo.Arguments = "config --global commit.gpgsign";
 
-
                     Console.WriteLine("CHECKING GPG");
                     process.Start();
                     AddProcessToJob(process);
@@ -834,6 +832,7 @@ namespace BuildTools
                 _disposables.Add(client);
                 try
                 {
+                    client.Headers["User-Agent"] = "BuildToolsGui";
                     client.DownloadProgressChanged += (sender, e) =>
                     {
                         double bytesIn = e.BytesReceived;
